@@ -28,10 +28,15 @@ for (var i = 0; i < aboElts.length; i++){
     });
 }
 
-// Affichage du code de nationalité choisi
-document.getElementById("nationalite").addEventListener("change", function (e) {
+function natio(e) {
     console.log("Code de nationalité : " + e.target.value);
-});
+    document.getElementById("nationalite").removeEventListener("change", natio);
+}
+
+// Affichage du code de nationalité choisi
+document.getElementById("nationalite").addEventListener("change", natio);
+
+
 
 
 var form = document.querySelector("form");
