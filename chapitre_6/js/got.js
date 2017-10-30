@@ -33,3 +33,34 @@ function getPersonnages(codeMaison) {
             return [];
     }
 }
+
+
+//Ajouter lors du chargement de la page les différentes maisons dans le select
+var maisonsSelectElt = document.getElementById("maison");
+maisons.forEach(function (maison) {
+
+    var newOption = document.createElement("option");
+    newOption.setAttribute("value", maison.code);
+    newOption.textContent = maison.nom;
+    maisonsSelectElt.appendChild(newOption);
+
+})
+
+
+//Affiche les personnages d'une maison dans la liste d'id "persos"
+function displayPerso(e){
+
+    var ulElt = document.getElementById("persos");
+    ulElt.innerHTML = "";
+
+    var persoTab = getPersonnages(e.target.value);
+    persoTab.forEach(function (perso){
+        var liElt = document.createElement("li");
+        liElt.textContent = perso;
+        ulElt.appendChild(liElt);
+    })
+}
+
+//Execute displayPerso lorsque select change
+maisonsSelectElt.addEventListener("change", displayPerso);
+
